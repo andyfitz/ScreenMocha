@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+/** @jsxImportSource @emotion/react */
+import { useState } from 'react';
+import { jsx, css } from '@emotion/react';
+
+import BrowserFrame from './BrowserFrame';
+import Shapes from './Shapes';
 
 function App() {
+  const [previewSize, setPreviewSize] = useState({
+    pixelW: 1440,
+    pixelH: 900,
+    fitZoom: 1
+  })
+
+  const styles = css`
+    & {
+      background-color: #ffc564;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+
+      .container {
+        width: 100%;
+        height: 100%;
+        padding: 4rem;
+      }
+    }
+  `
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div css={styles}>
+      {/* <Shapes /> */}
+      <div className="container">
+        <BrowserFrame
+          url="http://make.cm"
+          boxShadow
+          previewSize={previewSize}
+          setPreviewSize={setPreviewSize}
+        />
+      </div>
     </div>
   );
 }
